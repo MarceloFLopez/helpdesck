@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.marcelo.helpdesk.dto.TecnicoDTO;
 import com.marcelo.helpdesk.model.Tecnico;
 import com.marcelo.helpdesk.service.TecnicoService;
 
@@ -16,23 +17,22 @@ import com.marcelo.helpdesk.service.TecnicoService;
 @RequestMapping("/tecnicos")
 public class TecnicoController {
 
-	// http://localhost:8080/tecnicos
 	@Autowired
 	private TecnicoService service;
-		
+
 	// http://localhost:8080/tecnicos/1
 	@GetMapping("/{id}")
-	public ResponseEntity<Tecnico> findById(@PathVariable Integer id){
+	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
 		Tecnico tecnico = service.findById(id);
-		return ResponseEntity.ok().body(tecnico);
-		
+		return ResponseEntity.ok().body(new TecnicoDTO(tecnico));
+
 	}
-	
+
 	// http://localhost:8080/tecnicos/
 	@GetMapping("/")
-	public List<Tecnico> findAll(){
+	public List<Tecnico> findAll() {
 		List<Tecnico> tecnicos = service.findAll();
 		return tecnicos;
-		
+
 	}
 }
