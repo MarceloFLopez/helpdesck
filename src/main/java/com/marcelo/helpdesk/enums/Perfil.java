@@ -2,7 +2,7 @@ package com.marcelo.helpdesk.enums;
 
 public enum Perfil {
 
-	ADMIN(0, "ROLE_ADMIN"), CLIENTE(1, "ROLE_CLIENTE"), TECNICO(0, "TECNICO_TECNICO");
+	ADMIN(0, "ROLE_ADMIN"), CLIENTE(1, "ROLE_CLIENTE"), TECNICO(2, "TECNICO_TECNICO");
 
 	private Integer codigo;
 	private String descricao;

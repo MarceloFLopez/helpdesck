@@ -2,7 +2,7 @@ package com.marcelo.helpdesk.enums;
 
 public enum Status {
 
-	ABERTO(0, "ROLE_ABERTO"), ANDAMENTO(1, "ROLE_ANDAMENTO"), ENCERRADO(0, "TECNICO_ENCERRADO");
+	ABERTO(0, "ROLE_ABERTO"), ANDAMENTO(1, "ROLE_ANDAMENTO"), ENCERRADO(2, "TECNICO_ENCERRADO");
 
 	private Integer codigo;
 	private String descricao;

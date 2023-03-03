@@ -2,7 +2,7 @@ package com.marcelo.helpdesk.enums;
 
 public enum Prioridade {
 
-	BAIXA(0, "ROLE_BAIXA"), MEDIA(1, "ROLE_MEDIA"), ALTA(0, "TECNICO_ALTA");
+	BAIXA(0, "ROLE_BAIXA"), MEDIA(1, "ROLE_MEDIA"), ALTA(2, "TECNICO_ALTA");
 
 	private Integer codigo;
 	private String descricao;

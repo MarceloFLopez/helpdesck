@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marcelo.helpdesk.enums.Perfil;
 
 @Entity
@@ -18,6 +19,7 @@ public class Tecnico extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@OneToMany(mappedBy = "tecnico")
+	@JsonIgnore
 	private List<Chamado> chamados = new ArrayList<>();
 
 	public Tecnico() {
