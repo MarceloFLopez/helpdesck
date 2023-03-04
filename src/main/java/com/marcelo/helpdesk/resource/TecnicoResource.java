@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,25 +26,22 @@ public class TecnicoResource {
 
 	@Autowired
 	private TecnicoService service;
-
-	// http://localhost:8080/tecnicos/1
-	@GetMapping("/{id}")
+	
+	@GetMapping("/{id}") // http://localhost:8080/tecnicos/1
 	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
 		Tecnico obj = service.findById(id);
 		return ResponseEntity.ok().body(new TecnicoDTO(obj));
-
 	}
-
-	// http://localhost:8080/tecnicos/
-	@GetMapping
+	
+	@GetMapping // http://localhost:8080/tecnicos/
 	public ResponseEntity<List<TecnicoDTO>> findAll() {
 		List<Tecnico> list = service.findAll();
 		List<TecnicoDTO> listDTO = list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	@PostMapping
-	public ResponseEntity<TecnicoDTO> create(@RequestBody TecnicoDTO objDTO){
+	@PostMapping // http://localhost:8080/tecnicos/
+	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO){
 		objDTO.setId(null);
 		Tecnico newObj = new Tecnico(objDTO);
 		 service.create(objDTO);
