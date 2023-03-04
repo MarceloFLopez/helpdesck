@@ -1,4 +1,4 @@
-package com.marcelo.helpdesk.dto;
+package com.marcelo.helpdesk.model.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,6 +25,7 @@ public class TecnicoDTO implements Serializable {
 
 	public TecnicoDTO() {
 		super();
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public TecnicoDTO(Tecnico obj) {
