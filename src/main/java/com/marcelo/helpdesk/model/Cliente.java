@@ -10,7 +10,7 @@ import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.marcelo.helpdesk.enums.Perfil;
+import com.marcelo.helpdesk.model.enums.Perfil;
 
 @Entity
 public class Cliente extends Pessoa implements Serializable{

@@ -12,8 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.marcelo.helpdesk.enums.Prioridade;
-import com.marcelo.helpdesk.enums.Status;
+import com.marcelo.helpdesk.model.enums.Prioridade;
+import com.marcelo.helpdesk.model.enums.Status;
 
 import lombok.Data;
 import lombok.Getter;

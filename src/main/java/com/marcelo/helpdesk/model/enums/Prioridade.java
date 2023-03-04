@@ -1,4 +1,4 @@
-package com.marcelo.helpdesk.enums;
+package com.marcelo.helpdesk.model.enums;
 
 public enum Prioridade {
 

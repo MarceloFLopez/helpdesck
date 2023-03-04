@@ -20,7 +20,7 @@ import javax.validation.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.marcelo.helpdesk.enums.Perfil;
+import com.marcelo.helpdesk.model.enums.Perfil;
 
 @Entity
 public abstract class Pessoa implements Serializable{

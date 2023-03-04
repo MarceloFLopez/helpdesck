@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.marcelo.helpdesk.enums.Perfil;
 import com.marcelo.helpdesk.model.Tecnico;
+import com.marcelo.helpdesk.model.enums.Perfil;
 
 public class TecnicoDTO implements Serializable {
 

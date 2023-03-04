@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.marcelo.helpdesk.enums.Perfil;
+import com.marcelo.helpdesk.model.enums.Perfil;
 
 @Entity
 public class Tecnico extends Pessoa implements Serializable {
