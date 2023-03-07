@@ -2,10 +2,9 @@ package com.marcelo.helpdesk.resource.exception;
 
 import java.io.Serializable;
 
-public class StandardError implements Serializable{
-
+public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long timestamp;
 	private Integer status;
 	private String error;
@@ -33,11 +32,11 @@ public class StandardError implements Serializable{
 		this.timestamp = timestamp;
 	}
 
-	public Integer getStaus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStaus(Integer status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

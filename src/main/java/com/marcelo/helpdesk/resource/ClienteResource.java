@@ -23,43 +23,42 @@ import com.marcelo.helpdesk.model.dto.ClienteDTO;
 import com.marcelo.helpdesk.services.ClienteService;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping(value = "/clientes")
 public class ClienteResource {
 
 	@Autowired
 	private ClienteService service;
 
-	@GetMapping("/{id}") // http://localhost:8080/clientes/1
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<ClienteDTO> findById(@PathVariable Integer id) {
 		Cliente obj = service.findById(id);
 		return ResponseEntity.ok().body(new ClienteDTO(obj));
 	}
 
-	@GetMapping // http://localhost:8080/clientes/
+	@GetMapping
 	public ResponseEntity<List<ClienteDTO>> findAll() {
 		List<Cliente> list = service.findAll();
 		List<ClienteDTO> listDTO = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 
-	@PostMapping // http://localhost:8080/clientes/
+	@PostMapping
 	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteDTO objDTO) {
-		objDTO.setId(null);
-		Cliente newObj = new Cliente(objDTO);
-		service.create(objDTO);
+		Cliente newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-
-	@PutMapping("/{id}")
-	public ResponseEntity<ClienteDTO> update(@PathVariable Integer id,@Valid @RequestBody ClienteDTO objDto) {
-		Cliente obj = service.update(id, objDto);
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<ClienteDTO> update(@PathVariable Integer id, @Valid @RequestBody ClienteDTO objDTO) {
+		Cliente obj = service.update(id, objDTO);
 		return ResponseEntity.ok().body(new ClienteDTO(obj));
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<ClienteDTO> delete(@PathVariable Integer id) {
-		service.delete(id);
+		service.delete(id); 
 		return ResponseEntity.noContent().build();
 	}
+
 }

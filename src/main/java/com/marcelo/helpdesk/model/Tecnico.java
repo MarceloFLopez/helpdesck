@@ -1,27 +1,22 @@
 package com.marcelo.helpdesk.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Email;
-
-import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marcelo.helpdesk.model.dto.TecnicoDTO;
 import com.marcelo.helpdesk.model.enums.Perfil;
 
 @Entity
-public class Tecnico extends Pessoa implements Serializable {
-
+public class Tecnico extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
-	@OneToMany(mappedBy = "tecnico")
 	@JsonIgnore
+	@OneToMany(mappedBy = "tecnico")
 	private List<Chamado> chamados = new ArrayList<>();
 
 	public Tecnico() {
@@ -29,7 +24,7 @@ public class Tecnico extends Pessoa implements Serializable {
 		addPerfil(Perfil.CLIENTE);
 	}
 
-	public Tecnico(Integer id, String nome, @CPF String cpf, @Email String email, String senha) {
+	public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
 		super(id, nome, cpf, email, senha);
 		addPerfil(Perfil.CLIENTE);
 	}
@@ -41,7 +36,7 @@ public class Tecnico extends Pessoa implements Serializable {
 		this.cpf = obj.getCpf();
 		this.email = obj.getEmail();
 		this.senha = obj.getSenha();
-		this.perfil = obj.getPerfil().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
 	}
 

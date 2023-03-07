@@ -8,24 +8,27 @@ import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.marcelo.helpdesk.model.Cliente;
 import com.marcelo.helpdesk.model.enums.Perfil;
 
 public class ClienteDTO implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	protected Integer id;
-	@NotNull(message = "O camo NOME é obrigatório")
+	@NotNull(message = "O campo NOME é requerido")
 	protected String nome;
-	@NotNull(message = "O camo CPF é obrigatório")
+	@NotNull(message = "O campo CPF é requerido")
+	@CPF
 	protected String cpf;
-	@NotNull(message = "O camo EMAIL é obrigatório")
+	@NotNull(message = "O campo EMAIL é requerido")
 	protected String email;
-	@NotNull(message = "O camo SENHA é obrigatório")
+	@NotNull(message = "O campo SENHA é requerido")
 	protected String senha;
-	protected Set<Integer> perfil = new HashSet<>();
+	protected Set<Integer> perfis = new HashSet<>();
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 
@@ -35,13 +38,15 @@ public class ClienteDTO implements Serializable {
 	}
 
 	public ClienteDTO(Cliente obj) {
+		super();
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 		this.cpf = obj.getCpf();
 		this.email = obj.getEmail();
 		this.senha = obj.getSenha();
-		this.perfil = obj.getPerfil().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -84,12 +89,12 @@ public class ClienteDTO implements Serializable {
 		this.senha = senha;
 	}
 
-	public Set<Perfil> getPerfil() {
-		return perfil.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 
 	public void addPerfil(Perfil perfil) {
-		this.perfil.add(perfil.getCodigo());
+		this.perfis.add(perfil.getCodigo());
 	}
 
 	public LocalDate getDataCriacao() {
